@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import { Form, Input, Radio, InputNumber } from "antd";
 
 const tailLayout = {
@@ -13,7 +14,7 @@ const tailLayout = {
     },
   };
 
-export default function Step1({}) {
+const Step1 = ({ }) => {
     return (
         <>
             <Form.Item
@@ -39,7 +40,7 @@ export default function Step1({}) {
                     },
                 ]}
             >
-                <Radio.Group defaultValue="pria">
+                <Radio.Group initialValue="pria">
                     <Radio value="pria">Pria</Radio>
                     <Radio value="wanita">Wanita</Radio>
                 </Radio.Group>
@@ -60,3 +61,5 @@ export default function Step1({}) {
         </>
     )
 }
+
+export default connect((state) => state)(Step1)

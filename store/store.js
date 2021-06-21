@@ -3,6 +3,7 @@ import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunkMiddleware from 'redux-thunk'
 import count from './count/reducer'
 import tick from './tick/reducer'
+import creditScore from './credit-score/reducer'
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -15,6 +16,7 @@ const bindMiddleware = (middleware) => {
 const combinedReducer = combineReducers({
   count,
   tick,
+  creditScore,
 })
 
 const reducer = (state, action) => {
@@ -48,7 +50,7 @@ const makeStore = () => {
 
         const persistConfig = {
             key: 'nextjs',
-            whitelist: ['fromClient','count'], // make sure it does not clash with server keys
+            whitelist: ['fromClient','creditScore', 'count'], // make sure it does not clash with server keys
             storage
         };
 
