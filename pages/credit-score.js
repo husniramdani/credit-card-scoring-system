@@ -1,31 +1,110 @@
-import { Form, Select, InputNumber, Switch, Slider, Button } from 'antd'
+import React, { useState } from "react";
+import Layout from "@components/layout";
+import { Form, message, Button, Progress } from 'antd';
+import Step1 from "@components/credit-score/step1";
+import Step2 from "@components/credit-score/step2";
+import Step3 from "@components/credit-score/step3";
+import Step4 from "@components/credit-score/step4";
 
-// Custom DatePicker that uses Day.js instead of Moment.js
-import DatePicker from '../components/DatePicker'
+const steps = [
+  {
+    title: 'Biodata',
+    content: <Step1 />,
+  },
+  {
+    title: 'Pendidikan dan Pekerjaan',
+    content: <Step2 />,
+  },
+  {
+    title: 'Tempat Tinggal',
+    content: <Step3 />,
+  },
+  {
+    title: 'Pendapatan',
+    content: <Step4 />,
+  },
+];
 
-import { SmileFilled } from '@ant-design/icons'
+const layout = {
+  labelCol: {
+    // span: 8,
+  },
+  wrapperCol: {
+    // span: 16,
+  },
+};
+const tailLayout = {
+  wrapperCol: {
+    // offset: 8,
+    // span: 16,
+  },
+};
 
-import Link from 'next/link'
+export default function CreditScorePage() {
+  const [step, setStep] = useState(1);
+  const [form] = Form.useForm();
 
-const FormItem = Form.Item
-const Option = Select.Option
+  const onFinish = (values) => {
+    console.log('Success:', values);
+    increase();
+  };
 
-const content = {
-  marginTop: '100px',
-}
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
 
-export default function CreditScore() {
+  const increase = () => {
+    if (step < 4) setStep(step + 1)
+  };
+  const decrease = () => {
+    if (step > 1) setStep(step - 1)
+  };
+
   return (
-    <div style={content}>
-      <div className="text-center mb-5">
-        <Link href="/">
-          <a className="logo mr-0">
-            <SmileFilled size={48} strokeWidth={1} />
-          </a>
-        </Link>
-
-        <p className="mb-0 mt-3 text-disabled">Welcome to the world !</p>
+    <Layout title="Credit Score">
+      <div className="p-5 md:px-20">
+        <p className="text-lg font-semibold mb-2">
+          Cek Credit Score
+        </p >
+        <p className="">
+          Langkah {step} dari 4
+        </p>
+        <div className="my-5">
+          <Progress strokeWidth={15} percent={step * 25} showInfo={false} />
+        </div>
+        <Form
+          {...layout}
+          form={form}
+          name="basic"
+          initialValues={{
+            gender: "pria",
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+        >
+          <div className="steps-content mb-10">
+            <b>{steps[step - 1].title}</b>
+            {steps[step - 1].content}
+          </div>
+          <Form.Item {...tailLayout}>
+            {step !== steps.length &&
+              <Button type="primary" htmlType="submit">
+                Lanjut
+              </Button>
+            }
+            {step === steps.length && (
+              <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                Done
+              </Button>
+            )}
+            {step > 1 && (
+              <Button onClick={() => decrease()}>
+                Kembali
+              </Button>
+            )}
+          </Form.Item>
+        </Form>
       </div>
-    </div>
-  )
+    </Layout>
+  );
 }
