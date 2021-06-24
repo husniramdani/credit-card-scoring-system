@@ -19,7 +19,7 @@ export default function Step3({}) {
             <Form.Item
                 {...tailLayout}
                 label="Tempat Tinggal"
-                name="tempat-tinggal"
+                name="tempat_tinggal"
                 rules={[
                     {
                         required: true,
@@ -29,9 +29,9 @@ export default function Step3({}) {
             >
                 <Select placeholder="Pilih status tempat tinggal">
                     <Select.Option value="8">Rumah Milik Sendiri</Select.Option>
-                    <Select.Option value="7ROT">Rumah Orang Tua</Select.Option>
-                    <Select.Option value="7RS">Rumah Saudara</Select.Option>
-                    <Select.Option value="7RD">Rumah Dinas</Select.Option>
+                    <Select.Option value="7-ROT">Rumah Orang Tua</Select.Option>
+                    <Select.Option value="7-RS">Rumah Saudara</Select.Option>
+                    <Select.Option value="7-RD">Rumah Dinas</Select.Option>
                     <Select.Option value="6">Rumah Teman</Select.Option>
                     <Select.Option value="5">Rumah Milik Sendiri (KPR)</Select.Option>
                     <Select.Option value="4">Rumah Sewa (Kontrakan)</Select.Option>

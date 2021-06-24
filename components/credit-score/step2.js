@@ -11,9 +11,9 @@ const tailLayout = {
             span: 10,
         }
     },
-  };
+};
 
-export default function Step2({}) {
+export default function Step2({ }) {
     return (
         <>
             <Form.Item
@@ -53,14 +53,53 @@ export default function Step2({}) {
             >
                 <Select placeholder="Pilih pekerjaan saat ini">
                     <Select.Option value="8">Karyawan BUMN</Select.Option>
-                    <Select.Option value="7pns">PNS</Select.Option>
-                    <Select.Option value="7tni">TNI/POLRI</Select.Option>
+                    <Select.Option value="7-pns">PNS</Select.Option>
+                    <Select.Option value="7-tni">TNI/POLRI</Select.Option>
                     <Select.Option value="6">Profesional : Dokter/Dosen/Guru</Select.Option>
                     <Select.Option value="5">Pengusaha</Select.Option>
                     <Select.Option value="4">Karyawan Swasta</Select.Option>
                     <Select.Option value="3">Pegawai Kontrak</Select.Option>
                     <Select.Option value="2">Buruh Harian Lepas</Select.Option>
                     <Select.Option value="1">Ibu Rumah Tangga</Select.Option>
+                </Select>
+            </Form.Item>
+            <Form.Item
+                {...tailLayout}
+                label="Lama Bekerja"
+                name="lama_bekerja"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Lama bekerja tidak boleh kosong!',
+                    },
+                ]}
+            >
+                <Select placeholder="Pilih lama bekerja">
+                    <Select.Option value="2">Kurang dari 1 tahun</Select.Option>
+                    <Select.Option value="3">1-2 tahun</Select.Option>
+                    <Select.Option value="4">2-4 tahun</Select.Option>
+                    <Select.Option value="5">Lebih dari 4 tahun</Select.Option>
+                </Select>
+            </Form.Item>
+            <Form.Item
+                {...tailLayout}
+                label="Level Bekerja"
+                name="level_bekerja"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Level bekerja tidak boleh kosong!',
+                    },
+                ]}
+            >
+                <Select placeholder="Pilih level bekerja">
+                    <Select.Option value="7">CEO</Select.Option>
+                    <Select.Option value="6">Direktur</Select.Option>
+                    <Select.Option value="5">Manajer</Select.Option>
+                    <Select.Option value="4">Supervisor</Select.Option>
+                    <Select.Option value="3">Staff</Select.Option>
+                    <Select.Option value="2">Non Staff</Select.Option>
+                    <Select.Option value="1">Ibu rumah tangga</Select.Option>
                 </Select>
             </Form.Item>
         </>

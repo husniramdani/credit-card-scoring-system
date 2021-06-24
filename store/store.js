@@ -1,8 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunkMiddleware from 'redux-thunk'
-import count from './count/reducer'
-import tick from './tick/reducer'
 import creditScore from './credit-score/reducer'
 
 const bindMiddleware = (middleware) => {
@@ -14,8 +12,6 @@ const bindMiddleware = (middleware) => {
 }
 
 const combinedReducer = combineReducers({
-  count,
-  tick,
   creditScore,
 })
 
@@ -25,7 +21,7 @@ const reducer = (state, action) => {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
     }
-    if (state.count.count) nextState.count.count = state.count.count // preserve count value on client side navigation
+    if (state.creditScore) nextState.creditScore = state.creditScore
     return nextState
   } else {
     return combinedReducer(state, action)
@@ -50,7 +46,7 @@ const makeStore = () => {
 
         const persistConfig = {
             key: 'nextjs',
-            whitelist: ['fromClient','creditScore', 'count'], // make sure it does not clash with server keys
+            whitelist: ['fromClient','creditScore'], // make sure it does not clash with server keys
             storage
         };
 
@@ -62,9 +58,5 @@ const makeStore = () => {
         return store;
     }
 };
-
-// const initStore = () => {
-//   return createStore(reducer, bindMiddleware([thunkMiddleware]))
-// }
 
 export const wrapper = createWrapper(makeStore)
