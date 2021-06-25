@@ -32,12 +32,14 @@ const steps = [
     content: <Step4 />,
   },
   {
-    title: 'Hasil Cek Credit Score',
+    title: '',
     content: <Step5 />,
   },
 ];
 
 const layout = {
+  layout: "vertical",
+  size: "large",
   labelCol: {
     // span: 8,
   },
@@ -122,85 +124,78 @@ const CreditScorePage = (props) => {
 
   return (
     <Layout title="Credit Score">
-      <div className="p-5 md:px-20">
-        <p className="text-lg font-semibold mb-2">
-          Cek Credit Score
-        </p >
-        <p className="">
-          Langkah {step} dari {steps.length}
-        </p>
-        <div className="my-5">
-          <Progress strokeWidth={15} percent={step * 20} showInfo={false} />
-        </div>
-        <Form
-          {...layout}
-          form={form}
-          name="basic"
-          initialValues={{
-            nama: props.nama,
-            gender: "pria",
-            tgl_lahir: props.tgl_lahir ? moment(props.tgl_lahir) : null,
-            usia: props.usia,
-            status: props.status,
-            tanggungan: props.tanggungan,
-
-            pendidikan: props.pendidikan,
-            pekerjaan: props.pekerjaan,
-            lama_bekerja: props.lama_bekerja,
-            level_bekerja: props.level_bekerja,
-
-            tempat_tinggal: props.tempat_tinggal,
-
-            gaji: props.gaji,
-            amount: props.amount,
-            repayment: props.repayment,
-            insurance: props.insurance,
-            tujuan: props.tujuan,
-            kredit_ke: props.kredit_ke,
-          }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
-          <div className="steps-content mb-10">
-            <b>{steps[step - 1].title}</b>
-            {steps[step - 1].content}
-            {/* { steps[step - 1].content && step === 1 &&
-               <Step1 nama={props.nama}/>
-            } */}
+      <div className="p-5 md:px-20 bg-white min-h-screen h-full">
+        <div className="sm:w-120 m-auto">
+          <p className="text-lg font-semibold mb-2">
+            Cek Credit Score
+          </p >
+          <p className="">
+            Langkah {step} dari {steps.length}
+          </p>
+          <div className="my-5">
+            <Progress strokeWidth={15} percent={step * 20} showInfo={false} />
           </div>
-          <Form.Item {...tailLayout}>
-            {step < steps.length-1 &&
-              <Button type="primary" htmlType="submit">
-                Lanjut
-              </Button>
-            }
-            {step === steps.length-1 && (
-              <Button type="primary" htmlType="submit" onClick={() => onFormDone()}>
-                Done
-              </Button>
-            )}
-            {step > 1 && step <= steps.length-1 && (
-              <Button className="ml-3" onClick={() => decrease()}>
-                Kembali
-              </Button>
-            )}
-            {step === steps.length && (
-              <Button className="" onClick={() => onFormReset()}>
-                Reset Form
-              </Button>
-            )}
-          </Form.Item>
-        </Form>
+          <Form
+            {...layout}
+            form={form}
+            name="basic"
+            initialValues={{
+              nama: props.nama,
+              gender: "pria",
+              tgl_lahir: props.tgl_lahir ? moment(props.tgl_lahir) : null,
+              usia: props.usia,
+              status: props.status,
+              tanggungan: props.tanggungan,
+
+              pendidikan: props.pendidikan,
+              pekerjaan: props.pekerjaan,
+              lama_bekerja: props.lama_bekerja,
+              level_bekerja: props.level_bekerja,
+
+              tempat_tinggal: props.tempat_tinggal,
+
+              gaji: props.gaji,
+              amount: props.amount,
+              repayment: props.repayment,
+              insurance: props.insurance,
+              tujuan: props.tujuan,
+              kredit_ke: props.kredit_ke,
+            }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+          >
+            <div className="steps-content mb-10">
+              <b>{steps[step - 1].title}</b>
+              {steps[step - 1].content}
+            </div>
+            <Form.Item {...tailLayout}>
+              {step < steps.length-1 &&
+                <Button className="mr-3" type="primary" htmlType="submit">
+                  Lanjut
+                </Button>
+              }
+              {step === steps.length-1 && (
+                <Button className="mr-3" type="primary" htmlType="submit" onClick={() => onFormDone()}>
+                  Done
+                </Button>
+              )}
+              {step === steps.length && (
+                <Button success type="primary" className="mr-3" onClick={() => onFormReset()}>
+                  Reset Form
+                </Button>
+              )}
+              {step > 1 && step <= steps.length && (
+                <Button onClick={() => decrease()}>
+                  Kembali
+                </Button>
+              )}
+            </Form.Item>
+          </Form>
+        </div>
       </div>
     </Layout>
   );
 }
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  async ({ store }) => {
-    // store.dispatch(addStep1())
-  }
-)
 
 const mapStateToProps = (state) => ({
   nama: state.creditScore.nama,

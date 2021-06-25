@@ -1,22 +1,10 @@
 import { useEffect, useState } from "react";
 import { connect } from 'react-redux';
-import { Form, Select } from "antd";
-
-const tailLayout = {
-    labelCol: {
-        xs: {
-            span: 8,
-        }
-    },
-    wrapperCol: {
-        xs: {
-            span: 10,
-        }
-    },
-};
+import { Progress } from "antd";
 
 const Step5 = (props) => {
     const [score, setScore] = useState(0)
+    const [percent, setPercent] = useState(0)
     const [status_credit, setStatus] = useState("Status")
     const { usia, status, tanggungan, pendidikan, pekerjaan, lama_bekerja, level_bekerja, tempat_tinggal, gaji, amount, repayment, insurance, tujuan, kredit_ke } = props;
     useEffect(() => {
@@ -43,13 +31,22 @@ const Step5 = (props) => {
         } else if (count >= 72 && count <=84){
             setStatus("Kredit Lancar")
         }
-
+        setPercent((count/84) * 100)
     })
     return (
-        <>
-            <div>Hasil Score : {score}</div>
-            <div>Status : {status_credit}</div>
-        </>
+        <div className="sm:w-120 m-auto text-center">
+            <p className="text-xl font-bold mb-5">Hasil Score</p>
+            <Progress
+                type="circle"
+                strokeColor={{
+                    '0%': '#108ee9',
+                    '100%': '#87d068',
+                }}
+                percent={percent}
+                format={() => `${score}`}
+            />
+            <p className="text-2xl font-semibold mt-5">Status : {status_credit}</p>
+        </div>
     )
 }
 

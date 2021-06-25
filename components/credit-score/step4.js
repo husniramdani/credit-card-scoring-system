@@ -3,12 +3,12 @@ import { Form, Select } from "antd";
 const tailLayout = {
     labelCol: {
         xs: {
-            span: 8,
+            span: 24,
         }
     },
     wrapperCol: {
         xs: {
-            span: 10,
+            span: 24,
         }
     },
   };
@@ -38,7 +38,7 @@ export default function Step4({}) {
 
             <Form.Item
                 {...tailLayout}
-                label="Amount"
+                label="Amount (banyaknya pengajuan kredit)"
                 name="amount"
                 rules={[
                     {
@@ -57,7 +57,7 @@ export default function Step4({}) {
 
             <Form.Item
                 {...tailLayout}
-                label="Repayment"
+                label="Repayment (sumber pembayaran kembali)"
                 name="repayment"
                 rules={[
                     {
@@ -75,7 +75,7 @@ export default function Step4({}) {
 
             <Form.Item
                 {...tailLayout}
-                label="Insurance"
+                label="Insurance (jaminan)"
                 name="insurance"
                 rules={[
                     {

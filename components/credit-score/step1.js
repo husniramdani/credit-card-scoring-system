@@ -5,12 +5,12 @@ import DatePicker from "@components/DatePicker";
 const tailLayout = {
     labelCol: {
         xs: {
-            span: 8,
+            span: 24,
         }
     },
     wrapperCol: {
         xs: {
-            span: 10,
+            span: 24,
         }
     },
   };

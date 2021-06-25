@@ -10,6 +10,9 @@
 
 body {
   @apply bg-white text-black dark:bg-coolGray dark:text-white;
+  background: #1e3c72;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(-110deg, #0063c7 20%, #001e46 100%);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(-110deg, #0063c7 20%, #001e46 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* Write your own custom component styles here */
@@ -22,6 +25,12 @@ body {
 /* Stop purging. */
 
 /* Your own custom utilities */
+.bg-main {
+  background: #1e3c72;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #0063c7 20%, #001e46 100%);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #0063c7 20%, #001e46 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .scrollbars-hidden::-webkit-scrollbar {
   display: none;
 }

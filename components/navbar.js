@@ -3,23 +3,29 @@ import Link from "next/link";
 export default function Navbar({ title }) {  
   return (
     <>
-    <header className="z-10 top-0 pt-3 pl-3 pr-5 flex justify-between items-center md:pt-10 md:px-16 xl:px-24">
+    <header className="z-10 top-0 px-5 py-3 flex justify-between items-center md:px-16 md:py-5 xl:px-24">
       <div className="flex items-center">
-        <p className="font-bold text-xl mb-0">Cekinkuy</p>
+        <img
+          className="h-9 w-9"
+          src="images/logo-cekinkuy.png"
+          alt="logo cekinkuy"
+        />
+        <p className="font-semibold text-lg text-white ml-2 mb-0">Cekinkuy</p>
       </div>
       { title === "Cekinkuy" ?
-        <Link
-          href="/credit-score"
-        >
-          <button
-            className="bg-blue-700 text-white p-2 rounded"
-          >
-            Cek Skor Anda
-          </button>
-        </Link>
+        // <Link
+        //   href="/credit-score"
+        // >
+        //   <span className="bg-blue-700 text-white p-2 rounded hidden sm:block cursor-pointer">
+        //     Cek Skor Anda
+        //   </span>
+        // </Link>
+        null
         :
         <Link href="/">
-          Back
+          <span className="text-white cursor-pointer">
+            Back
+          </span>
         </Link>
 
       }
