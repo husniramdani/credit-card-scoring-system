@@ -8,7 +8,7 @@ export default function HomePage() {
       <Layout title="Cekinkuy">
         <div className="flex flex-col px-5 md:px-20 h-full">
           <div className="py-5 mb-10">
-            <p className="w-80 text-white text-2xl sm:text-4xl xl:text-6xl mx-auto text-center sm:w-120 xl:w-180">
+            <p className="w-80 mb-5 text-white text-2xl sm:text-4xl xl:text-6xl mx-auto text-center sm:w-120 xl:w-180">
               Skor Kredit Retail Sepeda Motor di Indonesia
             </p>
             <p className="w-60 mb-10 text-white font-thin text-lg sm:text-2xl xl:text-4xl mx-auto text-center sm:w-112 xl:w-128">

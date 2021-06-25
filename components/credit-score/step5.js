@@ -45,7 +45,7 @@ const Step5 = (props) => {
                 percent={percent}
                 format={() => `${score}`}
             />
-            <p className="text-2xl font-semibold mt-5">Status : {status_credit}</p>
+            <p className="text-xl font-semibold mt-5">Status : {status_credit}</p>
         </div>
     )
 }
